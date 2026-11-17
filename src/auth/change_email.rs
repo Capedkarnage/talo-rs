@@ -15,7 +15,11 @@ struct ChangeEmailRequest<'a> {
 }
 
 impl TaloClient {
-    pub async fn change_email(&self, current_password: &str, new_email: &str) -> TaloResult<()> {
+    pub async fn change_email(
+        &self,
+        current_password: &str,
+        new_email: &str,
+    ) -> TaloResult<()> {
         let url = format!("{}/v1/players/auth/change_email", self.api_url);
 
         let alias_id = self.alias_id.ok_or(TaloError::MissingAliasId)?;

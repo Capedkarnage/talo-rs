@@ -12,7 +12,10 @@ struct DeleteAccountRequest<'a> {
 }
 
 impl TaloClient {
-    pub async fn delete_account(&self, current_password: &str) -> TaloResult<()> {
+    pub async fn delete_account(
+        &self,
+        current_password: &str,
+    ) -> TaloResult<()> {
         let url = format!("{}/v1/players/auth", self.api_url);
 
         let alias_id = self.alias_id.ok_or(TaloError::MissingAliasId)?;

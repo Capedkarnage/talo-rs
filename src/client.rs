@@ -25,7 +25,10 @@ impl TaloClient {
         }
     }
 
-    pub fn with_api_url(&mut self, api_url: impl Into<String>) {
+    pub fn with_api_url(
+        &mut self,
+        api_url: impl Into<String>,
+    ) {
         self.api_url = api_url.into();
     }
 }

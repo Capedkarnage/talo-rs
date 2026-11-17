@@ -9,7 +9,10 @@ struct ForgotPasswordRequest<'a> {
 }
 
 impl TaloClient {
-    pub async fn forgot_password(&self, email: &str) -> TaloResult<()> {
+    pub async fn forgot_password(
+        &self,
+        email: &str,
+    ) -> TaloResult<()> {
         let url = format!("{}/v1/players/auth/forgot_password", self.api_url);
 
         let payload = ForgotPasswordRequest { email };

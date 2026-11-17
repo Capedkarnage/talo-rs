@@ -9,7 +9,11 @@ struct LoginRequest<'a> {
 }
 
 impl TaloClient {
-    pub async fn login(&mut self, identifier: &str, password: &str) -> TaloResult<AuthResponse> {
+    pub async fn login(
+        &mut self,
+        identifier: &str,
+        password: &str,
+    ) -> TaloResult<AuthResponse> {
         let url = format!("{}/v1/players/auth/login", self.api_url);
 
         let payload = LoginRequest {

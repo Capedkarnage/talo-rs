@@ -14,7 +14,10 @@ struct VerifyRequest {
 }
 
 impl TaloClient {
-    pub async fn verify(&mut self, code: &str) -> TaloResult<AuthResponse> {
+    pub async fn verify(
+        &mut self,
+        code: &str,
+    ) -> TaloResult<AuthResponse> {
         let alias_id = self.alias_id.ok_or(TaloError::MissingAliasId)?;
 
         let url = format!("{}/v1/players/auth/verify", self.api_url);

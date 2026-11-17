@@ -12,7 +12,11 @@ struct ResetPasswordRequest<'a> {
 }
 
 impl TaloClient {
-    pub async fn reset_password(&self, code: &str, password: &str) -> TaloResult<()> {
+    pub async fn reset_password(
+        &self,
+        code: &str,
+        password: &str,
+    ) -> TaloResult<()> {
         let url = format!("{}/v1/players/auth/reset_password", self.api_url);
 
         let payload = ResetPasswordRequest { code, password };
