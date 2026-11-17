@@ -1,3 +1,6 @@
+# Notice:
+I do not reccomend using the SDK in its current state. It is currently lacking many features and Talo response handling. However, for this reason feel free to contribute!
+
 # talo-rs
 
 An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game backend API. The currently implemented API surface is player authentication.
