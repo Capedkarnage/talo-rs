@@ -1,7 +1,7 @@
-pub mod client;
 pub mod auth;
-pub mod models;
+pub mod client;
 pub mod error;
+pub mod models;
 
 pub use client::TaloClient;
 pub use error::{TaloError, TaloResult};

@@ -5,7 +5,6 @@ use crate::{
     error::{TaloError, TaloResult},
 };
 
-
 #[derive(Serialize)]
 struct ChangeEmailRequest<'a> {
     #[serde(rename = "currentPassword")]
@@ -16,24 +15,18 @@ struct ChangeEmailRequest<'a> {
 }
 
 impl TaloClient {
-    pub async fn change_email(
-        &self,
-        current_password: &str,
-        new_email: &str,
-    ) -> TaloResult<()> {
-        let url = format!(
-            "{}/v1/players/auth/change_email",
-            self.api_url
-        );
+    pub async fn change_email(&self, current_password: &str, new_email: &str) -> TaloResult<()> {
+        let url = format!("{}/v1/players/auth/change_email", self.api_url);
 
-        let alias_id = self.alias_id
-            .ok_or(TaloError::MissingAliasId)?;
+        let alias_id = self.alias_id.ok_or(TaloError::MissingAliasId)?;
 
-        let player_id = self.player_id
+        let player_id = self
+            .player_id
             .as_deref()
             .ok_or(TaloError::MissingPlayerId)?;
 
-        let session_token = self.session_token
+        let session_token = self
+            .session_token
             .as_deref()
             .ok_or(TaloError::MissingSessionToken)?;
 

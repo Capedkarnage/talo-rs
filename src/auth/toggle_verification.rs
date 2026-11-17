@@ -4,7 +4,6 @@ use crate::{
 };
 use serde::Serialize;
 
-
 #[derive(Serialize)]
 struct ToggleVerificationRequest<'a> {
     #[serde(rename = "currentPassword")]
@@ -25,15 +24,16 @@ impl TaloClient {
         email: Option<&str>,
     ) -> TaloResult<()> {
         let alias_id = self.alias_id.ok_or(TaloError::MissingAliasId)?;
-        let player_id = self.player_id.as_deref()
+        let player_id = self
+            .player_id
+            .as_deref()
             .ok_or(TaloError::MissingPlayerId)?;
-        let session_token = self.session_token.as_deref()
+        let session_token = self
+            .session_token
+            .as_deref()
             .ok_or(TaloError::MissingSessionToken)?;
 
-        let url = format!(
-            "{}/v1/players/auth/toggle_verification",
-            self.api_url
-        );
+        let url = format!("{}/v1/players/auth/toggle_verification", self.api_url);
 
         let payload = ToggleVerificationRequest {
             current_password,

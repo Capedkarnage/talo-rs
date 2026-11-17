@@ -1,8 +1,4 @@
-use crate::{
-    client::TaloClient,
-    error::TaloResult,
-};
-
+use crate::{client::TaloClient, error::TaloResult};
 
 impl TaloClient {
     pub async fn logout(&mut self) -> TaloResult<()> {

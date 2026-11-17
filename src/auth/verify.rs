@@ -6,7 +6,6 @@ use crate::{
     models::auth::AuthResponse,
 };
 
-
 #[derive(Serialize)]
 struct VerifyRequest {
     #[serde(rename = "aliasId")]
@@ -15,24 +14,18 @@ struct VerifyRequest {
 }
 
 impl TaloClient {
-    pub async fn verify(
-        &mut self,
-        code: &str,
-    ) -> TaloResult<AuthResponse> {
-        let alias_id = self.alias_id
-            .ok_or(TaloError::MissingAliasId)?;
+    pub async fn verify(&mut self, code: &str) -> TaloResult<AuthResponse> {
+        let alias_id = self.alias_id.ok_or(TaloError::MissingAliasId)?;
 
-        let url = format!(
-            "{}/v1/players/auth/verify",
-            self.api_url
-        );
+        let url = format!("{}/v1/players/auth/verify", self.api_url);
 
         let payload = VerifyRequest {
             alias_id,
             code: code.to_string(),
         };
 
-        let response = self.http
+        let response = self
+            .http
             .post(&url)
             .bearer_auth(&self.api_key)
             .json(&payload)

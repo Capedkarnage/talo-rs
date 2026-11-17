@@ -1,11 +1,6 @@
-use crate::{
-    client::TaloClient,
-    error::TaloResult,
-    models::auth::AuthResponse,
-};
+use crate::{client::TaloClient, error::TaloResult, models::auth::AuthResponse};
 
 use serde::Serialize;
-
 
 #[derive(Serialize)]
 struct RegisterRequest<'a> {
@@ -35,7 +30,8 @@ impl TaloClient {
             verification_enabled: false,
         };
 
-        let response = self.http
+        let response = self
+            .http
             .post(&url)
             .bearer_auth(&self.api_key)
             .json(&payload)

@@ -1,6 +1,5 @@
 use reqwest::Client;
 
-
 pub struct TaloClient {
     pub(crate) http: Client,
     pub(crate) api_key: String,
