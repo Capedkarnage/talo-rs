@@ -57,7 +57,19 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-`register` accepts an optional email and a `verification_enabled` flag as its third and fourth arguments. Set the flag to `true` to enable account verification for the new player. `login` accepts an identifier and password:
+`register` accepts an optional email and a `verification_enabled` flag as its third and fourth arguments. If verification is enabled, provide a non-empty email; otherwise, registration returns `TaloError::EmailRequiredForVerification` without making an API request. For example:
+
+```rust
+talo.register(
+    "player_username",
+    "player_password",
+    Some("player@example.com"),
+    true,
+)
+.await?;
+```
+
+`login` accepts an identifier and password:
 
 ```rust
 let response = talo.login("player_username", "player_password").await?;

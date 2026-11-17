@@ -16,6 +16,9 @@ pub enum TaloError {
 
     #[error("Session token is missing")]
     MissingSessionToken,
+
+    #[error("Email is required when verification is enabled")]
+    EmailRequiredForVerification,
 }
 
 pub type TaloResult<T> = Result<T, TaloError>;
