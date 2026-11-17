@@ -1,0 +1,11 @@
+pub mod login;
+pub mod logout;
+pub mod register;
+pub mod verify;
+pub mod change_password;
+pub mod change_email;
+pub mod change_identifier;
+pub mod forgot_password;
+pub mod reset_password;
+pub mod delete_account;
+pub mod toggle_verification;
