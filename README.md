@@ -7,7 +7,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 <details>
 <summary>Auth</summary>
 
-- [x] `register(identifier, password, email)`
+- [x] `register(identifier, password, email, verification_enabled)`
 - [x] `login(identifier, password)`
 - [x] `verify(code)`
 - [x] `logout()`
@@ -49,7 +49,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut talo = TaloClient::new("YOUR_TALO_API_KEY");
 
     let response = talo
-        .register("player_username", "player_password", None)
+        .register("player_username", "player_password", None, false)
         .await?;
 
     println!("Player ID: {}", response.alias.player.id);
@@ -57,7 +57,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-`register` accepts an optional email as its third argument. `login` accepts an identifier and password:
+`register` accepts an optional email and a `verification_enabled` flag as its third and fourth arguments. Set the flag to `true` to enable account verification for the new player. `login` accepts an identifier and password:
 
 ```rust
 let response = talo.login("player_username", "player_password").await?;

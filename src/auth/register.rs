@@ -1,6 +1,6 @@
-use crate::{client::TaloClient, error::TaloResult, models::auth::AuthResponse};
-
 use serde::Serialize;
+
+use crate::{client::TaloClient, error::TaloResult, models::auth::AuthResponse};
 
 #[derive(Serialize)]
 struct RegisterRequest<'a> {
@@ -20,6 +20,7 @@ impl TaloClient {
         username: &str,
         password: &str,
         email: Option<&str>,
+        verification_enabled: bool,
     ) -> TaloResult<AuthResponse> {
         let url = format!("{}/v1/players/auth/register", self.api_url);
 
@@ -27,7 +28,7 @@ impl TaloClient {
             identifier: username,
             password,
             email,
-            verification_enabled: false,
+            verification_enabled,
         };
 
         let response = self
