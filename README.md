@@ -3,24 +3,145 @@ I do not reccomend using the SDK in its current state. It is currently lacking m
 
 # talo-rs
 
-An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game backend API. The currently implemented API surface is player authentication.
+An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game backend API.
 
-## Features
+## Talo REST API coverage
 
 <details>
-<summary>Auth</summary>
+<summary>Player authentication</summary>
 
-- [x] `register(identifier, password, email, verification_enabled)`
-- [x] `login(identifier, password)`
-- [x] `verify(code)`
-- [x] `logout()`
-- [x] `forgot_password(email)`
-- [x] `reset_password(code, password)`
-- [x] `change_password(current_password, new_password)`
-- [x] `toggle_verification(current_password, enabled, email)`
-- [x] `change_email(current_password, new_email)`
-- [x] `change_identifier(current_password, new_identifier)`
-- [x] `delete_account(current_password)`
+- [x] Register a player account
+- [x] Log in to a player account
+- [ ] Refresh a player session
+- [x] Verify a player account
+- [x] Log out of a player account
+- [x] Request a password reset
+- [x] Reset a player password
+- [x] Change a player password
+- [x] Change a player email address
+- [x] Change a player identifier
+- [x] Enable or disable player verification
+- [ ] Migrate a Talo player account to another service
+- [x] Delete a player account
+
+</details>
+
+<details>
+<summary>Players</summary>
+
+- [ ] Identify a player
+- [ ] Search for players
+- [ ] Find a player
+- [ ] Merge two players
+- [ ] Update a player's properties
+- [ ] Create a player socket token
+
+</details>
+
+<details>
+<summary>Player groups</summary>
+
+- [ ] Get a group and its members
+
+</details>
+
+<details>
+<summary>Player relationships</summary>
+
+- [ ] List subscriptions from players
+- [ ] List subscriptions for the current player
+- [ ] Create a subscription request
+- [ ] Confirm a pending subscription request
+- [ ] Update a subscription's properties
+- [ ] Delete a subscription
+
+</details>
+
+<details>
+<summary>Player presence</summary>
+
+- [ ] Get a player's presence
+- [ ] Update a player's online and custom status
+
+</details>
+
+<details>
+<summary>Leaderboards</summary>
+
+- [ ] Get a leaderboard's entries
+- [ ] Get top entries alongside the current player's entries
+- [ ] Create or update a leaderboard entry
+
+</details>
+
+<details>
+<summary>Game saves</summary>
+
+- [ ] Get a player's saves
+- [ ] Create a save
+- [ ] Update a save
+- [ ] Delete a save
+
+</details>
+
+<details>
+<summary>Game stats</summary>
+
+- [ ] Get all game stats
+- [ ] Get all of a player's current stats
+- [ ] Get a player's stat history
+- [ ] Get a global stat's history
+- [ ] Get a player's current value for a stat
+- [ ] Get an individual game stat
+- [ ] Update a stat value
+
+</details>
+
+<details>
+<summary>Events</summary>
+
+- [ ] Track events
+
+</details>
+
+<details>
+<summary>Feedback</summary>
+
+- [ ] Get available feedback categories
+- [ ] Create a player feedback entry
+
+</details>
+
+<details>
+<summary>Live config</summary>
+
+- [ ] Get the game's live config
+
+</details>
+
+<details>
+<summary>Channels</summary>
+
+- [ ] List game channels
+- [ ] List a player's channel subscriptions
+- [ ] Get a channel's members
+- [ ] Get multiple channel storage properties
+- [ ] Get a channel storage property
+- [ ] Find a game channel
+- [ ] Create a game channel
+- [ ] Join a game channel
+- [ ] Invite a player to a game channel
+- [ ] Leave a game channel
+- [ ] Create or update channel storage properties
+- [ ] Update a game channel
+- [ ] Delete a game channel
+
+</details>
+
+<details>
+<summary>Socket tickets</summary>
+
+- [ ] Create a socket ticket
 
 </details>
 
@@ -40,103 +161,8 @@ talo-rs = { git = "https://github.com/Capedkarnage/talo-rs" }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 ```
 
-## Getting Started
-
-Create a client with your Talo API key. Registration and login save the returned player, alias, and session details on the client for subsequent authenticated calls.
-
-```rust
-use talo_rs::TaloClient;
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let mut talo = TaloClient::new("YOUR_TALO_API_KEY");
-
-    let response = talo
-        .register("player_username", "player_password", None, false)
-        .await?;
-
-    println!("Player ID: {}", response.alias.player.id);
-    Ok(())
-}
-```
-
-`register` accepts an optional email and a `verification_enabled` flag as its third and fourth arguments. If verification is enabled, provide a non-empty email; otherwise, registration returns `TaloError::EmailRequiredForVerification` without making an API request. For example:
-
-```rust
-talo.register(
-    "player_username",
-    "player_password",
-    Some("player@example.com"),
-    true,
-)
-.await?;
-```
-
-`login` accepts an identifier and password:
-
-```rust
-let response = talo.login("player_username", "player_password").await?;
-println!("Logged in as {}", response.alias.identifier);
-```
-
-To use a different API URL, set it on the mutable client before making requests:
-
-```rust
-let mut talo = TaloClient::new("YOUR_TALO_API_KEY");
-talo.with_api_url("https://api.trytalo.com");
-```
-
-`with_api_url` updates the client in place and does not return a client to chain.
-
-## Authentication
-
-`verify` uses the alias ID saved by a preceding registration or login and returns an `AuthResponse`:
-
-```rust
-let response = talo.verify("123456").await?;
-println!("Verified player: {}", response.alias.player.id);
-```
-
-Account-management operations require a logged-in client. For example:
-
-```rust
-talo.change_password("current_password", "new_password").await?;
-talo.change_email("current_password", "new@example.com").await?;
-talo.change_identifier("current_password", "new_identifier").await?;
-talo.toggle_verification("current_password", true, None).await?;
-```
-
-Password recovery does not require a logged-in session:
-
-```rust
-talo.forgot_password("player@example.com").await?;
-talo.reset_password("123456", "new_password").await?;
-```
-
-Use `delete_account("current_password")` to delete the logged-in account. `logout()` clears the client’s saved player and session details.
-
-## Error Handling
-
-Client methods return `TaloResult<T>` (an alias for `Result<T, TaloError>`). HTTP failures and missing authentication state are reported as errors:
-
-```rust
-use talo_rs::{TaloClient, TaloError};
-
-async fn login() -> Result<(), TaloError> {
-    let mut talo = TaloClient::new("YOUR_TALO_API_KEY");
-    let response = talo.login("player_username", "player_password").await?;
-    println!("Welcome, {}!", response.alias.identifier);
-    Ok(())
-}
-```
-
-## Development
-
-```bash
-cargo test
-cargo fmt --check
-cargo clippy
-```
+## Usage
+(Wiki to be made)
 
 ## Contributing
 
