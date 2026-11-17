@@ -1,4 +1,4 @@
-# Notice:
+# Notice
 I do not reccomend using the SDK in its current state. It is currently lacking many features and Talo response handling. However, for this reason feel free to contribute!
 
 # talo-rs
