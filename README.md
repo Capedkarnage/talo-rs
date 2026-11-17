@@ -10,7 +10,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 **Overall coverage: 18% (11 of 60 endpoints).**
 
 <details>
-<summary>Player authentication — 85% (11/13)</summary>
+<summary>Player authentication - 85% (11/13)</summary>
 
 - [x] Register a player account
 - [x] Log in to a player account
@@ -29,7 +29,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 </details>
 
 <details>
-<summary>Players — 0% (0/6)</summary>
+<summary>Players - 0% (0/6)</summary>
 
 - [ ] Identify a player
 - [ ] Search for players
@@ -41,14 +41,14 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 </details>
 
 <details>
-<summary>Player groups — 0% (0/1)</summary>
+<summary>Player groups - 0% (0/1)</summary>
 
 - [ ] Get a group and its members
 
 </details>
 
 <details>
-<summary>Player relationships — 0% (0/6)</summary>
+<summary>Player relationships - 0% (0/6)</summary>
 
 - [ ] List subscriptions from players
 - [ ] List subscriptions for the current player
@@ -60,7 +60,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 </details>
 
 <details>
-<summary>Player presence — 0% (0/2)</summary>
+<summary>Player presence - 0% (0/2)</summary>
 
 - [ ] Get a player's presence
 - [ ] Update a player's online and custom status
@@ -68,7 +68,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 </details>
 
 <details>
-<summary>Leaderboards — 0% (0/3)</summary>
+<summary>Leaderboards - 0% (0/3)</summary>
 
 - [ ] Get a leaderboard's entries
 - [ ] Get top entries alongside the current player's entries
@@ -77,7 +77,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 </details>
 
 <details>
-<summary>Game saves — 0% (0/4)</summary>
+<summary>Game saves - 0% (0/4)</summary>
 
 - [ ] Get a player's saves
 - [ ] Create a save
@@ -87,7 +87,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 </details>
 
 <details>
-<summary>Game stats — 0% (0/7)</summary>
+<summary>Game stats - 0% (0/7)</summary>
 
 - [ ] Get all game stats
 - [ ] Get all of a player's current stats
@@ -100,14 +100,14 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 </details>
 
 <details>
-<summary>Events — 0% (0/1)</summary>
+<summary>Events - 0% (0/1)</summary>
 
 - [ ] Track events
 
 </details>
 
 <details>
-<summary>Feedback — 0% (0/2)</summary>
+<summary>Feedback - 0% (0/2)</summary>
 
 - [ ] Get available feedback categories
 - [ ] Create a player feedback entry
@@ -115,14 +115,14 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 </details>
 
 <details>
-<summary>Live config — 0% (0/1)</summary>
+<summary>Live config - 0% (0/1)</summary>
 
 - [ ] Get the game's live config
 
 </details>
 
 <details>
-<summary>Channels — 0% (0/13)</summary>
+<summary>Channels - 0% (0/13)</summary>
 
 - [ ] List game channels
 - [ ] List a player's channel subscriptions
@@ -141,7 +141,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 </details>
 
 <details>
-<summary>Socket tickets — 0% (0/1)</summary>
+<summary>Socket tickets - 0% (0/1)</summary>
 
 - [ ] Create a socket ticket
 
