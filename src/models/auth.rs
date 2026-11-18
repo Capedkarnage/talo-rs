@@ -12,6 +12,9 @@ pub struct AuthResponse {
 
     #[serde(rename = "verificationRequired")]
     pub verification_required: Option<bool>,
+
+    #[serde(rename = "refreshToken")]
+    pub refresh_token: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]

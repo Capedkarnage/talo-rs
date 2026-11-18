@@ -11,12 +11,16 @@ struct VerifyRequest {
     #[serde(rename = "aliasId")]
     alias_id: u64,
     code: String,
+
+    #[serde(rename = "withRefresh")]
+    with_refresh: Option<bool>,
 }
 
 impl TaloClient {
     pub async fn verify(
         &mut self,
         code: &str,
+        with_refresh: Option<bool>,
     ) -> TaloResult<AuthResponse> {
         let alias_id = self.alias_id.ok_or(TaloError::MissingAliasId)?;
 
@@ -25,6 +29,7 @@ impl TaloClient {
         let payload = VerifyRequest {
             alias_id,
             code: code.to_string(),
+            with_refresh,
         };
 
         let response = self
@@ -42,6 +47,7 @@ impl TaloClient {
         self.alias_id = Some(response.alias.id);
         self.session_token = response.session_token.clone();
         self.socket_token = response.socket_token.clone();
+        self.refresh_token = response.refresh_token.clone();
 
         Ok(response)
     }

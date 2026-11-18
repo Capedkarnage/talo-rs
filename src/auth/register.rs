@@ -16,6 +16,9 @@ struct RegisterRequest<'a> {
 
     #[serde(rename = "verificationEnabled")]
     verification_enabled: bool,
+
+    #[serde(rename = "withRefresh")]
+    with_refresh: Option<bool>,
 }
 
 impl TaloClient {
@@ -25,6 +28,7 @@ impl TaloClient {
         password: &str,
         email: Option<&str>,
         verification_enabled: bool,
+        with_refresh: Option<bool>
     ) -> TaloResult<AuthResponse> {
         if verification_enabled && email.is_none_or(|email| email.trim().is_empty()) {
             return Err(TaloError::EmailRequiredForVerification);
@@ -37,6 +41,7 @@ impl TaloClient {
             password,
             email,
             verification_enabled,
+            with_refresh,
         };
 
         let response = self
@@ -54,6 +59,7 @@ impl TaloClient {
         self.player_id = Some(response.alias.player.id.clone());
         self.session_token = response.session_token.clone();
         self.socket_token = response.socket_token.clone();
+        self.refresh_token = response.refresh_token.clone();
 
         Ok(response)
     }

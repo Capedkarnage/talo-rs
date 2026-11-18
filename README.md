@@ -14,7 +14,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 
 - [x] Register a player account
 - [x] Log in to a player account
-- [ ] Refresh a player session
+- [X] Refresh a player session
 - [x] Verify a player account
 - [x] Log out of a player account
 - [x] Request a password reset

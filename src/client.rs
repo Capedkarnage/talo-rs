@@ -9,6 +9,7 @@ pub struct TaloClient {
     pub alias_id: Option<u64>,
     pub session_token: Option<String>,
     pub socket_token: Option<String>,
+    pub refresh_token: Option<String>,
 }
 
 impl TaloClient {
@@ -22,6 +23,7 @@ impl TaloClient {
             alias_id: None,
             session_token: None,
             socket_token: None,
+            refresh_token: None,
         }
     }
 

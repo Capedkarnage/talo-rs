@@ -9,3 +9,4 @@ pub mod register;
 pub mod reset_password;
 pub mod toggle_verification;
 pub mod verify;
+pub mod refresh;
