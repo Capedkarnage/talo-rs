@@ -1,10 +1,6 @@
 use serde::Serialize;
 
-use crate::{
-    client::TaloClient,
-    error::{TaloResult},
-    models::auth::AuthResponse,
-};
+use crate::{client::TaloClient, error::TaloResult, models::auth::AuthResponse};
 
 #[derive(Serialize)]
 struct RefreshRequest<'a> {
@@ -19,9 +15,7 @@ impl TaloClient {
     ) -> TaloResult<AuthResponse> {
         let url = format!("{}/v1/players/auth/refresh", self.api_url);
 
-        let payload = RefreshRequest {
-            refresh_token,
-        };
+        let payload = RefreshRequest { refresh_token };
 
         let response = self
             .http

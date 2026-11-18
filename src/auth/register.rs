@@ -28,7 +28,7 @@ impl TaloClient {
         password: &str,
         email: Option<&str>,
         verification_enabled: bool,
-        with_refresh: Option<bool>
+        with_refresh: Option<bool>,
     ) -> TaloResult<AuthResponse> {
         if verification_enabled && email.is_none_or(|email| email.trim().is_empty()) {
             return Err(TaloError::EmailRequiredForVerification);

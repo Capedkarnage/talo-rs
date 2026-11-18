@@ -23,7 +23,7 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 - [x] Change a player email address
 - [x] Change a player identifier
 - [x] Enable or disable player verification
-- [ ] Migrate a Talo player account to another service
+- [x] Migrate a Talo player account to another service
 - [x] Delete a player account
 
 </details>
