@@ -7,10 +7,10 @@ An unofficial, asynchronous Rust client for the [Talo](https://trytalo.com) game
 
 ## Talo REST API coverage
 
-**Overall coverage: 18% (11 of 60 endpoints).**
+**Overall coverage: 20% (12 of 60 endpoints).**
 
 <details>
-<summary>Player authentication - 85% (11/13)</summary>
+<summary>Player authentication - 92% (12/13)</summary>
 
 - [x] Register a player account
 - [x] Log in to a player account
